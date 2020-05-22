@@ -12,6 +12,10 @@ class Auth():
         """."""
         self._lifetime = 1800
 
+    def get_lifetime(self):
+        """."""
+        return self._lifetime
+
     def _generate_access_token(self):
         """."""
         payload = {
