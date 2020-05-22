@@ -1,5 +1,6 @@
 """."""
 import jwt
+import time
 
 
 class Auth():
@@ -7,17 +8,18 @@ class Auth():
 
     # Use RS256
 
-    def __init__():
+    def __init__(self):
         """."""
+        self._lifetime = 1800
 
     def _generate_access_token(self):
         """."""
         payload = {
-            "issuer": "",
-            "expiration": ""
+            "issuer": "simple-auth-api",
+            "expiration": time.time() + self._lifetime
         }
 
-        # Create Issuer, Exp, Secret Key
+        # Secret Key
         try:
             access_token = jwt.encode(
                 payload, "", algorithm="HS256").decode()
