@@ -11,6 +11,7 @@ class Auth():
     def __init__(self):
         """."""
         self._lifetime = 1800
+        self._issuer = "simple-auth-api"
 
     def get_lifetime(self):
         """."""
@@ -19,7 +20,7 @@ class Auth():
     def _generate_access_token(self):
         """."""
         payload = {
-            "issuer": "simple-auth-api",
+            "issuer": self._issuer,
             "expiration": time.time() + self._lifetime
         }
 
@@ -42,4 +43,12 @@ class Auth():
         except:
             data = None
 
-        return data
+        if data:
+
+            try:
+                if time.time() < data["expiration"]:
+                    return True
+            except:
+                return False
+
+        return False
