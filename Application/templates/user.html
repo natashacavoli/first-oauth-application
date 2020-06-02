@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <b>Name: </b><br>
 {% if name %}
     {{ name }}
@@ -14,7 +18,4 @@
 {% endif %}
 <br>
 
-<form action="update_user" method="POST">
-    <input type="text" name="name">
-    <input type="submit" value="aaaa">
-</form>
+{% endblock %}
