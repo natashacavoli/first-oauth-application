@@ -1,7 +1,11 @@
 """."""
 from flask import render_template, request, session
 from Model.user import Users
+from flask import Blueprint
 import bcrypt
+
+
+home_blueprint = Blueprint("home_blueprint", __name__)
 
 
 class Home():
@@ -10,15 +14,18 @@ class Home():
     def __init__(self):
         """."""
 
-    def index(self):
+    @home_blueprint.route("/")
+    def index():
         """."""
         return render_template("index.html")
 
-    def login(self):
+    @home_blueprint.route("/login")
+    def login():
         """."""
         return render_template("login.html")
 
-    def auth_login(self):
+    @home_blueprint.route("/auth_login", methods=["POST"])
+    def auth_login():
         """."""
         username = request.form.get("username")
         password = request.form.get("password").encode("utf-8")
@@ -33,7 +40,7 @@ class Home():
 
                 if _user.id not in session:
 
-                    # session["id"] = _user.id
+                    session["id"] = _user.id
 
                     return "Ok :)"
 

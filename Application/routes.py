@@ -1,7 +1,8 @@
 """."""
 from flask import Flask
 from Model.db import db
-from Controller import user, home
+from Controller.home import home_blueprint
+from Controller.user import user_blueprint
 
 
 app = Flask(__name__)
@@ -14,15 +15,10 @@ app.secret_key = "secret_key"
 
 app.config["SESSION_TYPE"] = "filesystem"
 
+app.register_blueprint(user_blueprint)
+app.register_blueprint(home_blueprint)
+
 db.init_app(app)
-
-user = user.User()
-home = home.Home()
-
-app.add_url_rule("/", view_func=home.index)
-app.add_url_rule("/login", view_func=home.login)
-app.add_url_rule("/auth_login", view_func=home.auth_login, methods=["POST"])
-app.add_url_rule("/user", view_func=user.user)
 
 
 if __name__ == "__main__":
