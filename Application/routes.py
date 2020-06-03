@@ -3,6 +3,7 @@ from flask import Flask
 from Model.db import db
 from Controller.home import home_blueprint
 from Controller.user import user_blueprint
+import datetime
 
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app.register_blueprint(home_blueprint)
 
 db.init_app(app)
 
+app.permanent_session_lifetime = datetime.timedelta(days=1)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5002)

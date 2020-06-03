@@ -1,7 +1,6 @@
 """."""
-from flask import render_template, session
-from Model.user import Users
-from flask import Blueprint
+from flask import render_template, session, Blueprint
+from Model.user import User as ModelUser
 
 user_blueprint = Blueprint("user_blueprint", __name__)
 
@@ -15,21 +14,17 @@ class User():
     @user_blueprint.before_request
     def before_request():
         """."""
-        return "nope"
         if session.get("id"):
             pass
         else:
             return "nope"
 
-    @user_blueprint.route("/user")
+    @user_blueprint.route("/me")
     def user():
         """."""
-        _users = Users.query.all()
+        _user = ModelUser.query.filter(ModelUser.id == session.get("id")).\
+            first()
 
-        r = [
-            {"name": i.name, "email": i.email} for i in _users]
-
-        if r:
-            r = r[0]
+        r = {"name": _user.name, "email": _user.email}
 
         return render_template("user.html", name=r["name"], email=r["email"])
