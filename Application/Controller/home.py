@@ -1,5 +1,5 @@
 """."""
-from flask import render_template, request, redirect, session, Blueprint
+from flask import render_template, request, session, redirect, Blueprint
 from Model.user import User
 from Model.db import db
 import bcrypt
@@ -30,17 +30,19 @@ class Home():
         username = request.form.get("username")
         password = request.form.get("password").encode("utf-8")
 
-        _user = User.query.filter(User.username == username).first()
+        user = User.query.filter(User.username == username).first()
 
-        if _user:
+        if user:
 
-            _hashed = bcrypt.hashpw(password, _user.password.encode("utf-8"))
+            _hashed = bcrypt.hashpw(password, user.password.encode("utf-8"))
 
-            if _hashed.decode("utf-8") == _user.password:
+            if _hashed.decode("utf-8") == user.password:
+                pass
 
-                if _user.id not in session:
+                if user.id not in session.values():
 
-                    session["id"] = _user.id
+                    session["id"] = user.id
+                    session["logged"] = True
 
                     return redirect("/me")
 
@@ -80,3 +82,16 @@ class Home():
         db.session.commit()
 
         return redirect("/")
+
+    @home_blueprint.route("/logout")
+    def logout():
+        """."""
+        if session.get("id"):
+
+            session["id"] = None
+
+        if session.get("logged"):
+
+            session["logged"] = None
+
+        return redirect("/login")

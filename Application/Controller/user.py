@@ -1,5 +1,5 @@
 """."""
-from flask import render_template, session, Blueprint
+from flask import render_template, session, redirect, Blueprint
 from Model.user import User as ModelUser
 
 user_blueprint = Blueprint("user_blueprint", __name__)
@@ -14,10 +14,10 @@ class User():
     @user_blueprint.before_request
     def before_request():
         """."""
-        if session.get("id"):
+        if session.get("id") and session.get("logged"):
             pass
         else:
-            return "nope"
+            return redirect("/login")
 
     @user_blueprint.route("/me")
     def user():
