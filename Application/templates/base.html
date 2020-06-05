@@ -8,20 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a href="/" class="nav-link">Home</a>
-                    </li>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/me">Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+                {% if session["id"] %}
                     <li class="nav-item">
-                        <a href="/login" class="nav-link">Login</a>
+                        <a class="nav-link text-right" href="/logout">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/signup" class="nav-link">Sign Up</a>
-                    </li>
-                </ul>
-            </div>
+                {% endif %}
+            </ul>
         </nav>
     </div>
     <div class="container mt-3">
