@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if not has_access %}
+
+        <div class="border border-light p-4">
+
+            <a href="/me/api/get">Generate Access</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if has_access %}
+
+        <div class="border border-light p-4">
+
+            <h4 class="card-title">Client id</h4>
+
+            <p>{{ data.client_id }}</p>
+
+            <h4 class="card-title">Client secret</h4>
+
+            <p><a href="" id="show">Show</a></p>
+
+            <p id="secret" style="display: none;">{{ data.client_secret }}</p>
+
+            <p><a href="" id="opener">Revoke</a></p>
+
+            <div class="alert alert-warning" style="display: none;" id="alert">
+
+                This action will remove your credentials to our API. <a href="/me/api/revoke">Continue</a>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

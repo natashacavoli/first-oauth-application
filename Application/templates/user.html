@@ -2,20 +2,26 @@
 
 {% block content %}
 
-<b>Name: </b><br>
-{% if name %}
-    {{ name }}
-{% else %}
+<div class="border border-light p-4">
 
-{% endif %}
-<br>
+    <h5 class="card-title">Name</h5>
 
-<b>Email: </b><br>
-{% if email %}
-    {{ email }}
-{% else %}
+    {% if data.name %}
+        <p>{{ data.name }}</p>
+    {% else %}
 
-{% endif %}
-<br>
+    {% endif %}
+
+    <h5 class="card-title">Email</h5>
+
+    {% if data.email %}
+        <p>{{ data.email }}</p>
+    {% else %}
+
+    {% endif %}
+
+    <p class="text-right"><a href="/me/api">API Config</a></p>
+
+</div>
 
 {% endblock %}
