@@ -1,5 +1,5 @@
 """."""
-from Model.client import Client
+from .credential import Credential
 import jwt
 import time
 
@@ -21,11 +21,12 @@ class Auth():
 
     def request_access_token(self, client_id, client_secret):
         """."""
-        q = Client.query.filter_by(
-            client_id=client_id,
-            client_secret=client_secret).first()
+        c = Credential()
 
-        if q:
+        c.client_id = client_id
+        c.client_secret = client_secret
+
+        if c.authenticate():
 
             return self.generate_access_token()
 
