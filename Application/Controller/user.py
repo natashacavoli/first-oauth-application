@@ -28,8 +28,7 @@ class User():
     @user_blueprint.route("/me")
     def user():
         """."""
-        user = ModelUser.query.filter(ModelUser.id == session.get("id")).\
-            first()
+        user = ModelUser.query.get(session.get("id"))
 
         data = {"name": user.name, "email": user.email}
 
@@ -38,8 +37,7 @@ class User():
     @user_blueprint.route("/me/api")
     def api():
         """."""
-        result = Client.query.filter(Client.id == session.get("id")).\
-            first()
+        result = Client.query.get(session.get("id"))
 
         has_access = None
 
@@ -62,8 +60,7 @@ class User():
     @user_blueprint.route("/me/api/get")
     def get_api():
         """."""
-        result = Client.query.filter(Client.id == session.get("id")).\
-            first()
+        result = Client.query.get(session.get("id"))
 
         if result:
 
@@ -89,8 +86,9 @@ class User():
     @user_blueprint.route("/me/api/revoke")
     def revoke_api():
         """."""
-        Client.query.filter(Client.id == session.get("id")).\
-            delete()
+        client = Client.query.get(session.get("id"))
+
+        db.session.delete(client)
 
         db.session.commit()
 
