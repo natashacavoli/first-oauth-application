@@ -30,7 +30,7 @@ class Home():
             return {
                 "access_token": access_token,
                 "token_type": "JWT",
-                "expires_in": auth.get_lifetime()
+                "expires_in": auth.lifetime
             }
 
         return {"i'm": "sorry"}
