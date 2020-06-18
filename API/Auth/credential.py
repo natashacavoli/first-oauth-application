@@ -1,5 +1,6 @@
 """."""
 from Model.client import Client
+import datetime
 
 
 class Credential():
@@ -45,6 +46,10 @@ class Credential():
             client_secret=self.client_secret).first()
 
         if q:
+
+            if datetime.datetime.today() > q.expires:
+
+                return
 
             return True
 
