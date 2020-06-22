@@ -46,7 +46,11 @@ Change string of connection with database in main.py
 ```python
 _con = "postgresql://username:password@address:port/database"
 ```
-Change string o secret keys in auth.py
+Change string of secret key in auth.py
 ```python
 secret = "your secret key"
+```
+Running the Application or the API
+```bash
+python main.py
 ```
