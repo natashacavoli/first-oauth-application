@@ -4,6 +4,7 @@ from Auth.auth import Auth
 from Model.user import User as UserModel
 from Model.client import Client
 from Model.db import db
+import json
 
 
 user_blueprint = Blueprint("user_blueprint", __name__)
@@ -56,6 +57,13 @@ class User():
             client_id=client_id).first()
 
         if me:
-            return {"name": me.name, "email": me.email}
+            data = {
+                "name": me.name,
+                "email": me.email,
+                "username": me.username,
+                "bio": me.bio
+            }
+
+            return json.dumps(data)
 
         return {"not", "found"}
