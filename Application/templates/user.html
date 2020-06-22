@@ -20,6 +20,23 @@
 
     {% endif %}
 
+    <h5 class="card-title">Username</h5>
+
+    {% if data.username %}
+        <p>{{ data.username }}</p>
+    {% else %}
+
+    {% endif %}
+
+    <div class="card border-secondary mb-3">
+        <div class="card-body text-dark">
+            <h5 class="card-title">{% if data.name %}{{ data.name }}'s{% endif %} bio</h5>
+            <p class="card-text">{% if data.bio %}{{ data.bio }}{% endif %}</p>
+        </div>
+    </div>
+
+    <a type="button" class="btn btn-outline-secondary" href="/me/change">Edit your profile</a>
+
     <p class="text-right"><a href="/me/api">API Config</a></p>
 
 </div>
