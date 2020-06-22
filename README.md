@@ -1,7 +1,7 @@
 # First Oauth Application
 My first OAuth2 API Application with Flask
 
-## Installation
+## Installing Packages
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
 ```bash
 pip install bcrypt
@@ -40,4 +40,10 @@ ALTER TABLE clients ADD CONSTRAINT clients_pkey
   PRIMARY KEY (id);
 ALTER TABLE clients ADD CONSTRAINT clients_id_fkey
   FOREIGN KEY (id) REFERENCES users(id);
+```
+## Running
+Change string of connection with database in main.py
+Example:
+```python
+_con = "postgresql://username:password@address:port/database"
 ```
