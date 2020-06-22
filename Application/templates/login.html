@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<h2 class="card-title">Login</h2>
+
 <form action="auth_login" method="POST">
     <div class="form-group">
         <label for="username">Username</label>
@@ -16,7 +18,8 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" class="form-control">
     </div>
-    <button type="submit" class="btn btn-light">Submit</button>
+
+    <button type="submit" class="btn btn-outline-secondary">Login</button>
 </form>
 
 {% endblock %}
