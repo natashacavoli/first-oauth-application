@@ -12,3 +12,4 @@ class User(db.Model):
     email = db.Column(db.String(75))
     username = db.Column(db.String(75))
     password = db.Column(db.String(75))
+    bio = db.Column(db.Text())
