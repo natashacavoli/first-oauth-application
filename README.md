@@ -43,7 +43,10 @@ ALTER TABLE clients ADD CONSTRAINT clients_id_fkey
 ```
 ## Running
 Change string of connection with database in main.py
-Example:
 ```python
 _con = "postgresql://username:password@address:port/database"
+```
+Change string o secret keys in auth.py
+```python
+secret = "your secret key"
 ```
